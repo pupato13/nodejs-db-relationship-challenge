@@ -11,6 +11,8 @@ export default class CustomersController {
     ): Promise<Response> {
         const { name, email } = request.body;
 
+        console.log(request);
+
         console.log(name);
         console.log(email);
 
