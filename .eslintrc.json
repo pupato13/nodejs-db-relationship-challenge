@@ -1,53 +1,93 @@
 {
-  "env": {
-    "es6": true,
-    "node": true,
-    "jest": true
-  },
-  "extends": [
-    "airbnb-base",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
-  ],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "plugins": ["@typescript-eslint", "prettier"],
-  "rules": {
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "_"
-      }
+    "env": {
+        "es6": true,
+        "node": true,
+        "jest": true,
+        "browser": true,
+    },
+    "extends": [
+        // "airbnb-base",
+        // "plugin:@typescript-eslint/recommended",
+        // "prettier/@typescript-eslint",
+        // "plugin:prettier/recommended"
+        "plugin:react/recommended",
+        "airbnb",
+        "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
     ],
-    "no-useless-constructor": "off",
-    "@typescript-eslint/interface-name-prefix": [
-      "error",
-      {
-        "prefixWithI": "always"
-      }
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        // "@typescript-eslint",
+        // "prettier"
+        "react",
+        "@typescript-eslint",
+        "react-hooks",
+        "prettier"
     ],
-    "@typescript-eslint/camelcase": "off",
-    "prettier/prettier": "error",
-    "class-methods-use-this": "off",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "ts": "never"
-      }
-    ]
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
+    "rules": {
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "_"
+            }
+        ],
+        "no-useless-constructor": "off",
+        "@typescript-eslint/interface-name-prefix": [
+            "error",
+            {
+                "prefixWithI": "always"
+            }
+        ],
+        "@typescript-eslint/camelcase": "off",
+        "prettier/prettier": "error",
+        "class-methods-use-this": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/prop-types": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "no-unused-expressions": "off",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".tsx"
+                ]
+            }
+        ],
+        "import/prefer-default-export": "off",
+        "import/no-duplicates": "off",
+        "@typescript-eslint/explicit-function-return-type": [
+            "error",
+            {
+                "allowExpressions": true
+            }
+        ],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
+        "camelcase": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        }
     }
-  }
 }

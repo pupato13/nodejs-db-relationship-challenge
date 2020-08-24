@@ -6,37 +6,60 @@ import IUpdateProductsQuantityDTO from '@modules/products/dtos/IUpdateProductsQu
 import Product from '../entities/Product';
 
 interface IFindProducts {
-  id: string;
+    id: string;
 }
 
 class ProductsRepository implements IProductsRepository {
-  private ormRepository: Repository<Product>;
+    private ormRepository: Repository<Product>;
 
-  constructor() {
-    this.ormRepository = getRepository(Product);
-  }
+    constructor() {
+        this.ormRepository = getRepository(Product);
+    }
 
-  public async create({
-    name,
-    price,
-    quantity,
-  }: ICreateProductDTO): Promise<Product> {
-    // TODO
-  }
+    public async create({
+        name,
+        price,
+        quantity,
+    }: ICreateProductDTO): Promise<Product> {
+        // TODO
+        const product = await this.ormRepository.create({
+            name,
+            price,
+            quantity
+        });
 
-  public async findByName(name: string): Promise<Product | undefined> {
-    // TODO
-  }
+        await this.ormRepository.save(product);
 
-  public async findAllById(products: IFindProducts[]): Promise<Product[]> {
-    // TODO
-  }
+        return product;
+    }
 
-  public async updateQuantity(
-    products: IUpdateProductsQuantityDTO[],
-  ): Promise<Product[]> {
-    // TODO
-  }
+    public async findByName(name: string): Promise<Product | undefined> {
+        // TODO
+        const product = await this.ormRepository.findOne({
+            where: { name },
+        });
+
+        return product;
+    }
+
+    public async findAllById(products: IFindProducts[]): Promise<Product[]> {
+        // TODO
+        const productsIds = products.map(product => product.id);
+
+        const productsResult = await this.ormRepository.find({
+            where: {
+                id: In(productsIds)
+            }
+        });
+
+        return productsResult;
+    }
+
+    public async updateQuantity(
+        products: IUpdateProductsQuantityDTO[],
+    ): Promise<Product[]> {
+        // TODO
+    }
 }
 
 export default ProductsRepository;
