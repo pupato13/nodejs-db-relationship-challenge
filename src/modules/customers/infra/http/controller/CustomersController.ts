@@ -11,11 +11,6 @@ export default class CustomersController {
     ): Promise<Response> {
         const { name, email } = request.body;
 
-        console.log(request);
-
-        console.log(name);
-        console.log(email);
-
         const createCustomerService = container.resolve(CreateCustomerService);
 
         const customer = await createCustomerService.execute({ name, email });
